@@ -112,14 +112,14 @@ function build_monster( $seed, $size ){
 	}
 
 	// throw the dice for body parts
-	$parts = array(
-		'legs'		=> \mt_rand(1,5),
-		'hair'		=> \mt_rand(1,5),
-		'arms'		=> \mt_rand(1,5),
-		'body'		=> \mt_rand(1,15),
-		'eyes'		=> \mt_rand(1,15),
-		'mouth'	=> \mt_rand(1,10)
-	);
+	$parts = [
+		'legs'		=> \mt_rand( 1, 5 ),
+		'hair'		=> \mt_rand( 1, 5 ),
+		'arms'		=> \mt_rand( 1, 5 ),
+		'body'		=> \mt_rand( 1, 15 ),
+		'eyes'		=> \mt_rand( 1, 15 ),
+		'mouth'	=> \mt_rand( 1, 10 )
+	];
 
 	// create backgound
 	$monster	= \imagecreatetruecolor( 120, 120 );
@@ -128,7 +128,7 @@ function build_monster( $seed, $size ){
 	\imagefill( $monster,0,0,$white );
 
 	// add parts
-	foreach( $parts as $part => $num ){
+	foreach( $parts as $part => $num ) {
 		$file	= PARTS . $part. '_' . $num . '.png';
 		$im	=  \imagecreatefrompng( $file );
 		if( !$im ) {
@@ -146,7 +146,7 @@ function build_monster( $seed, $size ){
 				$monster, 
 				\mt_rand( 20, 235 ), 
 				\mt_rand( 20, 235 ), 
-				\mt_rand( 20,235 ) 
+				\mt_rand( 20, 235 ) 
 			);
 			\imagefill( $monster, 60, 60, $color );
 		}
@@ -158,7 +158,7 @@ function build_monster( $seed, $size ){
 	}
 
 	// resize if needed, then output
-	if ( $size && $size < 400 ){
+	if ( $size && $size < SIZE_MAX ){
 		$out = \imagecreatetruecolor( $size, $size );
 		\imagecopyresampled(
 			$out,
